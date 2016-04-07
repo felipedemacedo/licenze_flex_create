@@ -4,12 +4,12 @@ RUN apt-get update && apt-get install -y unzip && rm -rf /var/lib/apt/lists/*
 
 ENV LANG C.UTF-8
 ENV JAVA_VERSION 6b35
-ENV JAVA_DEBIAN_VERSION 6b38-1.13.10-1~deb7u1
+
 
 RUN apt-get update -y && apt-get install --no-install-recommends -y -q curl python build-essential git ca-certificates
 RUN mkdir /nodejs && curl http://nodejs.org/dist/v0.10.33/node-v0.10.33-linux-x64.tar.gz | tar xvzf - -C /nodejs --strip-components=1
 
-RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y openjdk-6-jdk:i386="$JAVA_DEBIAN_VERSION" && rm -rf /var/lib/apt/lists/*
+RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y openjdk-6-jdk:i386 && rm -rf /var/lib/apt/lists/*
 RUN update-alternatives --set java /usr/lib/jvm/java-6-openjdk-i386/jre/bin/java
 
 ENV PATH $PATH:/nodejs/bin
